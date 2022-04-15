@@ -14,7 +14,7 @@ export declare class Wilson {
     read(): Entries;
     write(data: Entries): this;
     exec(io: IO<Entries>): this;
-    get(key: string): Value | undefined;
+    get<T extends Value>(key: string): T | undefined;
     put(key: string, value: Value, options?: PutOptions): this;
     cas(key: string, compare: Value | undefined, set: Value | undefined): this;
     casMulti(operations: Array<CasOperation>): this;

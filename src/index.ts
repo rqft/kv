@@ -47,9 +47,9 @@ export class Wilson {
     this.write(io(data));
     return this;
   }
-  public get(key: string): Value | undefined {
+  public get<T extends Value>(key: string): T | undefined {
     const data = this.read();
-    return data[key];
+    return data[key] as T;
   }
   public put(key: string, value: Value, options: PutOptions = {}): this {
     const item = this.get(key);
