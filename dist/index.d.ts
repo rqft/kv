@@ -23,7 +23,7 @@ export declare class Wilson {
     has(key: string): boolean;
     count(): number;
     list(): Array<string>;
-    items(): Array<Value>;
+    items(): Array<Item>;
     transact(key: string, io: (value: Value) => Value): this | undefined;
     transactMulti(keys: Array<string>, io: (value: Value) => Value): this;
     keys(): IterableIterator<string>;
@@ -57,3 +57,7 @@ export interface CasSetIfNotExists {
     set: Value;
 }
 export declare type CasOperation = CasDeleteIfEquals | CasSetIfNotExists | CasCompareAndSwap;
+export interface Item {
+    key: string;
+    value: Value;
+}

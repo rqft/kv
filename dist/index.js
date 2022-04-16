@@ -88,7 +88,8 @@ class Wilson {
         return Object.keys(this.read());
     }
     items() {
-        return Object.values(this.read());
+        const entries = Object.entries(this.read());
+        return entries.map(([key, value]) => ({ key, value }));
     }
     transact(key, io) {
         const item = this.get(key);
@@ -109,8 +110,8 @@ class Wilson {
         }
     }
     *values() {
-        for (const value of this.items()) {
-            yield value;
+        for (const item of this.items()) {
+            yield item.value;
         }
     }
     *entries() {

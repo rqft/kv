@@ -117,8 +117,9 @@ export class Wilson {
   public list(): Array<string> {
     return Object.keys(this.read());
   }
-  public items(): Array<Value> {
-    return Object.values(this.read());
+  public items(): Array<Item> {
+    const entries = Object.entries(this.read());
+    return entries.map(([key, value]) => ({ key, value }));
   }
 
   public transact(key: string, io: (value: Value) => Value) {
@@ -143,8 +144,8 @@ export class Wilson {
   }
 
   public *values(): IterableIterator<Value> {
-    for (const value of this.items()) {
-      yield value;
+    for (const item of this.items()) {
+      yield item.value;
     }
   }
 
@@ -214,3 +215,7 @@ export type CasOperation =
   | CasDeleteIfEquals
   | CasSetIfNotExists
   | CasCompareAndSwap;
+export interface Item {
+  key: string;
+  value: Value;
+}
