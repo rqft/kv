@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import process from "node:process";
 export type Value =
   | string
   | number
@@ -29,7 +30,7 @@ export class Wilson {
     this.namespace = namespace;
   }
   public path() {
-    return path.resolve(__dirname, `${this.namespace}.json`);
+    return path.resolve(process.cwd(), `${this.namespace}.json`);
   }
   public read(): Entries {
     return JSON.parse(fs.readFileSync(this.path(), "utf8"));

@@ -6,13 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Wilson = void 0;
 const node_fs_1 = __importDefault(require("node:fs"));
 const node_path_1 = __importDefault(require("node:path"));
+const node_process_1 = __importDefault(require("node:process"));
 class Wilson {
     namespace;
     constructor(namespace) {
         this.namespace = namespace;
     }
     path() {
-        return node_path_1.default.resolve(__dirname, `${this.namespace}.json`);
+        return node_path_1.default.resolve(node_process_1.default.cwd(), `${this.namespace}.json`);
     }
     read() {
         return JSON.parse(node_fs_1.default.readFileSync(this.path(), "utf8"));
