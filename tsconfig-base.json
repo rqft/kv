@@ -2,12 +2,9 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    // "incremental": true,
-    "target": "esnext",
-    "module": "commonjs",
-    "outDir": "./dist",
     "rootDir": "./src",
     "composite": true,
+    "moduleResolution": "node",
     "removeComments": true,
     "strict": true,
     "noUnusedLocals": true,

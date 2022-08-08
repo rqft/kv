@@ -1,29 +1,44 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Wilson = void 0;
-const node_fs_1 = __importDefault(require("node:fs"));
-const node_path_1 = __importDefault(require("node:path"));
-const node_process_1 = __importDefault(require("node:process"));
+const fs = __importStar(require("node:fs"));
+const path = __importStar(require("node:path"));
+const process = __importStar(require("node:process"));
 class Wilson {
-    namespace;
     constructor(namespace) {
         this.namespace = namespace;
     }
     path() {
-        return node_path_1.default.resolve(node_process_1.default.cwd(), `${this.namespace}.json`);
+        return path.resolve(process.cwd(), `${this.namespace}.json`);
     }
     read() {
-        return JSON.parse(node_fs_1.default.readFileSync(this.path(), "utf8"));
+        return JSON.parse(fs.readFileSync(this.path(), "utf8"));
     }
     write(data) {
         const existing = this.read();
         if (JSON.stringify(existing) === JSON.stringify(data)) {
             return this;
         }
-        node_fs_1.default.writeFileSync(this.path(), JSON.stringify(data, null, 2), "utf8");
+        fs.writeFileSync(this.path(), JSON.stringify(data, null, 2), "utf8");
         return this;
     }
     exec(io) {

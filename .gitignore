@@ -1,3 +1,5 @@
 node_modules
 package-lock.json
-tsconfig.tsbuildinfo
+.idea
+/dist/tsconfig-cjs.tsbuildinfo
+/dist/tsconfig-esm.tsbuildinfo
