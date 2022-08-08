@@ -1,6 +1,6 @@
 {
-  "name": "wilson-kv",
-  "version": "1.0.4",
+  "name": "@rqft/kv",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
