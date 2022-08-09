@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build" : "tsc --p tsconfig-cjs.json && tsc --p tsconfig-esm.json && node scripts/mkjson.mjs dist/cjs dist/esm"
   },
   "nodemonConfig": {
     "ignore": [
