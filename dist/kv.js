@@ -1,29 +1,19 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
+var __await = (this && this.__await) || function (v) { return this instanceof __await ? (this.v = v, this) : new __await(v); }
+var __asyncGenerator = (this && this.__asyncGenerator) || function (thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Wilson = void 0;
-const fs = __importStar(require("node:fs"));
-const path = __importStar(require("node:path"));
-const process = __importStar(require("node:process"));
-class Wilson {
+import * as fs from "node:fs";
+import * as path from "node:path";
+import * as process from "node:process";
+export class Wilson {
     constructor(namespace) {
         this.namespace = namespace;
     }
@@ -57,7 +47,7 @@ class Wilson {
                 return this;
             }
             if (options.ifNotExists) {
-                throw new Error(`${key} already exists`);
+                throw new Error(`${String(key)} already exists`);
             }
         }
         return this.exec((data) => {
@@ -68,7 +58,7 @@ class Wilson {
     cas(key, compare, set) {
         const item = this.get(key);
         if (item && item === compare) {
-            throw new Error(`${key} is already ${compare}`);
+            throw new Error(`${String(key)} is already ${compare}`);
         }
         this.exec((data) => {
             data[key] = set;
@@ -105,7 +95,10 @@ class Wilson {
     }
     items() {
         const entries = Object.entries(this.read());
-        return entries.map(([key, value]) => ({ key, value }));
+        return entries.map(([key, value]) => ({
+            key: key,
+            value: value,
+        }));
     }
     transact(key, io) {
         const item = this.get(key);
@@ -140,10 +133,12 @@ class Wilson {
             yield [key, value];
         }
     }
-    async *[Symbol.asyncIterator]() {
-        for (const [key, value] of this.entries()) {
-            yield [key, value];
-        }
+    [Symbol.asyncIterator]() {
+        return __asyncGenerator(this, arguments, function* _a() {
+            for (const [key, value] of this.entries()) {
+                yield yield __await([key, value]);
+            }
+        });
     }
     get [Symbol.toStringTag]() {
         return this.toString();
@@ -161,4 +156,3 @@ class Wilson {
         }
     }
 }
-exports.Wilson = Wilson;

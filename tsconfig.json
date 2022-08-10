@@ -3,6 +3,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "rootDir": "./src",
+    "outDir": "./dist",
     "composite": true,
     "moduleResolution": "node",
     "removeComments": true,
@@ -13,6 +14,7 @@
     "noFallthroughCasesInSwitch": true,
     // "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "target": "ES6"
   }
 }
