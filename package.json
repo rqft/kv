@@ -1,6 +1,6 @@
 {
   "name": "@rqft/kv",
-  "version": "1.0.02",
+  "version": "1.0.03",
   "description": "",
   "main": "dist/index.js",
   "nodemonConfig": {
