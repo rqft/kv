@@ -16,6 +16,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "target": "ES2015",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "module": "CommonJS"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@rqft/kv",
-  "version": "1.0.03",
+  "version": "1.0.04",
   "description": "",
   "main": "dist/index.js",
   "nodemonConfig": {
@@ -8,6 +8,7 @@
       "kv/*.json"
     ]
   },
+  "type": "commonjs",
   "author": "",
   "license": "ISC",
   "devDependencies": {
