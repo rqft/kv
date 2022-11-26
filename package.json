@@ -8,7 +8,9 @@
       "kv/*.json"
     ]
   },
-  
+  "scripts": {
+    "pub": "tsc && git commit -a -m ok && git push && npm version patch && npm publish --access public"
+  },
   "type": "commonjs",
   "author": "",
   "license": "ISC",

@@ -53,4 +53,5 @@ export interface Item<T, U extends keyof T> {
 
 export type Struct = Partial<Entries>;
 
-export type V<T> = T extends Value ? T : never;
+// export type V<T> = T extends Value ? T : never;
+export type V<T> = T;

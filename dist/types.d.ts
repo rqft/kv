@@ -31,4 +31,4 @@ export interface Item<T, U extends keyof T> {
     value: V<T[U]>;
 }
 export declare type Struct = Partial<Entries>;
-export declare type V<T> = T extends Value ? T : never;
+export declare type V<T> = T;
